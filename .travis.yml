@@ -1,0 +1,32 @@
+sudo: required
+services:
+  - docker
+language: minimal
+
+env:
+  matrix:
+  - TARGET=powerpc64le-unknown-linux-gnu CUDA=80
+  - TARGET=powerpc64le-unknown-linux-gnu CUDA=91
+  - TARGET=x86_64-unknown-linux-gnu      CUDA=80
+  - TARGET=x86_64-unknown-linux-gnu      CUDA=91
+  global:
+    - IMAGE_NAME=cwpearson/cross-nvcc
+    - REGISTRY_USER=cwpearson
+
+before_script:
+  - tag="$TARGET-cuda-$CUDA-$version-$TRAVIS_BRANCH"
+script:
+  - docker build --tag "$IMAGE_NAME" . -f $TARGET-cuda-$CUDA.Dockerfile
+
+after_script:
+  - docker images
+
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${tag}"
+deploy:
+  provider: script
+  script: docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${tag}"
+  on:
+    tags: true
