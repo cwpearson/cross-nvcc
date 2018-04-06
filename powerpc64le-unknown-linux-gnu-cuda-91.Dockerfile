@@ -23,6 +23,7 @@ RUN curl -sL -o cuda.run "$CUDA_URL" \
     && rm -r "$CUDA_HOST/samples" \
     && rm -r "$CUDA_HOST/nsightee_plugins"
 
+RUN ls $CUDA_HOST
 
 ## Install cross-compiling libraries
 ENV CUDA_TARGET_URL https://developer.nvidia.com/compute/cuda/9.1/Prod/local_installers/cuda-repo-ubuntu1604-9-1-local_9.1.85-1_ppc64el
