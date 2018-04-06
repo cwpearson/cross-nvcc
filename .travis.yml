@@ -28,6 +28,6 @@ before_deploy:
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${latest_tag}"
 deploy:
   provider: script
-  script: docker push "${IMAGE_NAME}:${tag}"
+  script: docker push "${IMAGE_NAME}:${version_tag}" && docker push "${IMAGE_NAME}:${latest_tag}"
   on:
     tags: true
