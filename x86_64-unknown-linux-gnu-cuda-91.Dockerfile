@@ -33,5 +33,4 @@ RUN curl -sL -o cuda.run "$CUDA_URL" \
     && rm -r "$CUDA_HOST/nsightee_plugins"
 
 RUN ls $CUDA_HOST
-
 RUN nvcc --version

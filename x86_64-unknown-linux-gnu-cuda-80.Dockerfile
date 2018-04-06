@@ -32,5 +32,4 @@ RUN curl -sL -o cuda.run "$CUDA_URL" \
     && rm -r "$CUDA_HOST/samples"
 
 RUN ls $CUDA_HOST
-
 RUN nvcc --version

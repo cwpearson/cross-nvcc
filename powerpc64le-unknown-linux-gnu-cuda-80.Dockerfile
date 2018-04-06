@@ -23,7 +23,7 @@ RUN curl -sL -o cuda.run "$CUDA_URL" \
     && rm -r "$CUDA_HOST/samples"
 
 RUN ls $CUDA_HOST
-
+RUN nvcc --version
 
 ## Install cross-compiling libraries
 ENV CUDA_TARGET_URL https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1604-8-0-local-ga2v2_8.0.61-1_ppc64el-deb
@@ -36,4 +36,3 @@ RUN curl -sL -o cuda.deb "$CUDA_TARGET_URL" \
     && mv tmp2/usr/local/cuda-8.0/* "$CUDA_TARGET/." \
     && rm -r tmp2
 
-RUN nvcc --version
