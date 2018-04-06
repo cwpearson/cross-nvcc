@@ -17,9 +17,9 @@ RUN apt-get update \
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        g++-5 \
+        g++-4.8 \
     && rm -rf /var/lib/apt/lists/*
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8
 
 ## Install host CUDA version
 RUN curl -sL -o cuda.run "$CUDA_URL" \

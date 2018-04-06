@@ -35,3 +35,4 @@ RUN curl -sL -o cuda.deb "$CUDA_TARGET_URL" \
     && mv tmp2/usr/local/cuda-8.0/* "$CUDA_TARGET/." \
     && rm -r tmp2
 
+RUN nvcc --version
