@@ -26,10 +26,10 @@ RUN curl -sL -o cuda.run "$CUDA_URL" \
     && chmod +x cuda.run \
     && ./cuda.run --toolkit --silent --toolkitpath="$CUDA_HOST" \
     && rm -v cuda.run \
-    && rm -rv "$CUDA_HOST/doc" \
-    && rm -rv "$CUDA_HOST/libnsight" \
-    && rm -rv "$CUDA_HOST/libnvvp" \
-    && rm -rv "$CUDA_HOST/samples" \
-    && rm -rv "$CUDA_HOST/nsightee_plugins"
+    && rm -r "$CUDA_HOST/doc" \
+    && rm -r "$CUDA_HOST/libnsight" \
+    && rm -r "$CUDA_HOST/libnvvp" \
+    && rm -r "$CUDA_HOST/samples" \
+    && rm -r "$CUDA_HOST/nsightee_plugins"
 
 RUN nvcc --version
