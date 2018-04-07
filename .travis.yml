@@ -15,7 +15,7 @@ env:
 
 before_script:
   - version_tag="$TARGET-cuda-$CUDA-$TRAVIS_BRANCH"
-  - latest_tag="$TARGET-cuda-$CUDA-latest
+  - latest_tag="$TARGET-cuda-$CUDA-latest"
 script:
   - docker build --tag "$IMAGE_NAME" . -f $TARGET-cuda-$CUDA.Dockerfile
 
